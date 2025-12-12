@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axis 2025 - Sponsorship Proposal</title>
+    <title>Asifa 26 - Sponsorship Proposal</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { margin: 0; padding: 0; }
+        body { margin: 0; padding: 0; background-color: #F5F5DC; }
         #root { width: 100%; height: 100vh; }
         @media (max-width: 768px) {
             .slide-content { padding: 1rem !important; }
             .slide-title { font-size: 1.5rem !important; }
             .slide-subtitle { font-size: 1.125rem !important; }
+        }
+        .logo-placeholder {
+            border: 2px dashed #9CA3AF;
+            background-color: #F9FAFB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6B7280;
+            font-size: 0.875rem;
+            text-align: center;
+            padding: 1rem;
         }
     </style>
 </head>
@@ -63,6 +74,11 @@
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
         );
+        const QrCode = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+            </svg>
+        );
 
         const SponsorshipPresentation = () => {
           const [currentSlide, setCurrentSlide] = useState(0);
@@ -70,7 +86,8 @@
           const slides = [
             {
               title: "Partnership Opportunity",
-              subtitle: "Axis 2025 - Connecting Innovation with Impact",
+              subtitle: "Asifa 26",
+              organization: "Nethra Club - ITMS Research Wing",
               type: "cover"
             },
             {
@@ -183,7 +200,7 @@
                 {
                   name: "Panelist File Branding",
                   price: "₹800 total",
-                  description: "Your logo prominently featured on official files distributed to all 60 event panelists, judges, and guest speakers. Just ₹800 for complete coverage across all files - extended brand recall beyond the event day."
+                  description: "Your logo prominently featured on official files distributed to all 60 event panelists, judges, and guest speakers. Just ₹800 for logos on all 60 files - extended brand recall beyond the event day."
                 },
                 {
                   name: "Custom Standees",
@@ -220,12 +237,12 @@
               content: "College events aren't just about banners and logos. They're about building relationships with the next generation of professionals. Students today are discerning - they value authenticity and meaningful engagement over flashy advertising. Our sponsorship packages are designed to give you genuine touchpoints with this audience, whether you're recruiting talent, testing products, or building long-term brand awareness."
             },
             {
-              title: "Next Steps",
+              title: "Get In Touch",
               type: "cta",
               contact: {
                 title: "Let's Create Something Meaningful Together",
                 description: "We're committed to making this partnership valuable for you. Let's discuss how we can customize these packages to align with your specific goals and budget.",
-                action: "Schedule a conversation with our team to explore the right fit for your brand."
+                action: "Scan to connect with us or reach out via email/phone"
               }
             }
           ];
@@ -242,13 +259,45 @@
             switch (slide.type) {
               case 'cover':
                 return (
-                  <div className="h-full flex flex-col items-center justify-center text-center px-4 md:px-8">
-                    <div className="max-w-4xl">
-                      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                        {slide.title}
-                      </h1>
-                      <p className="text-lg md:text-2xl lg:text-3xl text-gray-600 mb-8 md:mb-12">{slide.subtitle}</p>
-                      <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+                  <div className="h-full flex items-center justify-center px-4 md:px-8">
+                    <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+                      {/* Left Logo Slot */}
+                      <div className="hidden md:block md:col-span-2">
+                        <div className="logo-placeholder rounded-xl h-32 md:h-48">
+                          Sponsor Logo
+                        </div>
+                      </div>
+
+                      {/* Center Content */}
+                      <div className="col-span-1 md:col-span-8 text-center">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">
+                          {slide.title}
+                        </h1>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-gray-800">
+                          {slide.subtitle}
+                        </h2>
+                        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 md:mb-8 font-medium">
+                          {slide.organization}
+                        </p>
+                        <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-amber-700 to-orange-600 mx-auto"></div>
+                      </div>
+
+                      {/* Right Logo Slot */}
+                      <div className="hidden md:block md:col-span-2">
+                        <div className="logo-placeholder rounded-xl h-32 md:h-48">
+                          Sponsor Logo
+                        </div>
+                      </div>
+
+                      {/* Mobile Logo Slots */}
+                      <div className="md:hidden grid grid-cols-2 gap-4">
+                        <div className="logo-placeholder rounded-xl h-24">
+                          Sponsor Logo
+                        </div>
+                        <div className="logo-placeholder rounded-xl h-24">
+                          Sponsor Logo
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
@@ -259,8 +308,8 @@
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                       {slide.points.map((point, idx) => (
-                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                          <div className="text-blue-600 mb-3 md:mb-4">{point.icon}</div>
+                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200">
+                          <div className="text-amber-700 mb-3 md:mb-4">{point.icon}</div>
                           <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-gray-800">{point.heading}</h3>
                           <p className="text-sm md:text-base text-gray-600 leading-relaxed">{point.text}</p>
                         </div>
@@ -275,9 +324,9 @@
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                       {slide.details.map((detail, idx) => (
-                        <div key={idx} className="bg-gradient-to-br from-blue-50 to-purple-50 p-4 md:p-8 rounded-xl">
+                        <div key={idx} className="bg-gradient-to-br from-amber-50 to-orange-50 p-4 md:p-8 rounded-xl border border-amber-200">
                           <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-3">
-                            <div className="text-blue-600">{detail.icon}</div>
+                            <div className="text-amber-700">{detail.icon}</div>
                             <h3 className="text-base md:text-lg font-semibold text-gray-700">{detail.label}</h3>
                           </div>
                           <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800">{detail.value}</p>
@@ -295,21 +344,21 @@
                       {slide.packages.map((pkg, idx) => (
                         <div
                           key={idx}
-                          className={`bg-white rounded-xl shadow-lg p-4 md:p-6 ${
-                            pkg.highlight ? 'ring-2 ring-blue-500' : ''
+                          className={`bg-white rounded-xl shadow-lg p-4 md:p-6 border-2 ${
+                            pkg.highlight ? 'border-amber-600' : 'border-gray-200'
                           }`}
                         >
                           {pkg.highlight && (
-                            <div className="bg-blue-500 text-white text-xs md:text-sm font-semibold px-3 py-1 rounded-full inline-block mb-2 md:mb-3">
+                            <div className="bg-amber-600 text-white text-xs md:text-sm font-semibold px-3 py-1 rounded-full inline-block mb-2 md:mb-3">
                               RECOMMENDED
                             </div>
                           )}
                           <h3 className="text-xl md:text-2xl font-bold mb-2 text-gray-800">{pkg.name}</h3>
-                          <p className="text-2xl md:text-3xl font-bold text-blue-600 mb-3 md:mb-4">{pkg.price}</p>
+                          <p className="text-2xl md:text-3xl font-bold text-amber-700 mb-3 md:mb-4">{pkg.price}</p>
                           <ul className="space-y-1.5 md:space-y-2">
                             {pkg.features.map((feature, fidx) => (
                               <li key={fidx} className="flex items-start gap-2 text-gray-700">
-                                <span className="text-green-500 mt-0.5 md:mt-1 flex-shrink-0">✓</span>
+                                <span className="text-green-600 mt-0.5 md:mt-1 flex-shrink-0">✓</span>
                                 <span className="text-xs md:text-sm">{feature}</span>
                               </li>
                             ))}
@@ -326,10 +375,10 @@
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
                     <div className="space-y-4 md:space-y-6">
                       {slide.addons.map((addon, idx) => (
-                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg">
+                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-200">
                           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
                             <h3 className="text-lg md:text-2xl font-semibold text-gray-800">{addon.name}</h3>
-                            <span className="text-xl md:text-2xl font-bold text-blue-600 whitespace-nowrap">{addon.price}</span>
+                            <span className="text-xl md:text-2xl font-bold text-amber-700 whitespace-nowrap">{addon.price}</span>
                           </div>
                           <p className="text-sm md:text-base text-gray-600 leading-relaxed">{addon.description}</p>
                         </div>
@@ -344,8 +393,8 @@
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                       {slide.sections.map((section, idx) => (
-                        <div key={idx} className="bg-gradient-to-br from-blue-50 to-white p-4 md:p-6 rounded-xl">
-                          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-blue-600">{section.heading}</h3>
+                        <div key={idx} className="bg-gradient-to-br from-amber-50 to-white p-4 md:p-6 rounded-xl border border-amber-100">
+                          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-amber-700">{section.heading}</h3>
                           <p className="text-sm md:text-base text-gray-700 leading-relaxed">{section.description}</p>
                         </div>
                       ))}
@@ -357,7 +406,7 @@
                 return (
                   <div className="h-full flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 overflow-y-auto">
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-8 text-gray-800 text-center">{slide.title}</h2>
-                    <div className="max-w-4xl bg-white p-4 md:p-8 rounded-xl shadow-lg">
+                    <div className="max-w-4xl bg-white p-4 md:p-8 rounded-xl shadow-lg border border-gray-200">
                       <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">{slide.content}</p>
                     </div>
                   </div>
@@ -368,8 +417,22 @@
                   <div className="h-full flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 text-center overflow-y-auto">
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-gray-800">{slide.contact.title}</h2>
                     <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-8 max-w-3xl">{slide.contact.description}</p>
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg lg:text-xl font-semibold">
-                      {slide.contact.action}
+                    
+                    {/* QR Code Scanner Placeholder */}
+                    <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border-2 border-amber-600 mb-6">
+                      <div className="w-48 h-48 md:w-64 md:h-64 mx-auto bg-gray-100 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-400">
+                        <div className="text-center">
+                          <QrCode className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 text-gray-400" />
+                          <p className="text-sm md:text-base text-gray-500 font-medium">QR Code<br/>Scanner Placeholder</p>
+                        </div>
+                      </div>
+                      <p className="mt-4 text-sm md:text-base text-gray-700 font-semibold">{slide.contact.action}</p>
+                    </div>
+
+                    {/* Contact Information */}
+                    <div className="bg-amber-50 px-6 md:px-8 py-4 rounded-lg border border-amber-200">
+                      <p className="text-base md:text-lg font-semibold text-gray-800 mb-2">Nethra Club - ITMS Research Wing</p>
+                      <p className="text-sm md:text-base text-gray-600">Email: contact@nethraclub.edu | Phone: +91 XXXXX XXXXX</p>
                     </div>
                   </div>
                 );
@@ -380,15 +443,15 @@
           };
 
           return (
-            <div className="w-full h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col">
+            <div className="w-full h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex flex-col">
               <div className="flex-1 relative overflow-hidden">
                 {renderSlide(slides[currentSlide])}
               </div>
 
-              <div className="bg-white border-t border-gray-200 p-3 md:p-6 flex items-center justify-between">
+              <div className="bg-white border-t border-amber-200 p-3 md:p-6 flex items-center justify-between">
                 <button
                   onClick={prevSlide}
-                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm md:text-base disabled:opacity-50"
+                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-amber-100 hover:bg-amber-200 rounded-lg transition-colors text-sm md:text-base disabled:opacity-50 text-gray-800"
                   disabled={currentSlide === 0}
                 >
                   <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
@@ -401,7 +464,7 @@
                       key={idx}
                       onClick={() => setCurrentSlide(idx)}
                       className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
-                        idx === currentSlide ? 'bg-blue-600 w-4 md:w-8' : 'bg-gray-300'
+                        idx === currentSlide ? 'bg-amber-700 w-4 md:w-8' : 'bg-amber-300'
                       }`}
                     />
                   ))}
@@ -409,7 +472,7 @@
 
                 <button
                   onClick={nextSlide}
-                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm md:text-base disabled:opacity-50"
+                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-amber-700 hover:bg-amber-800 text-white rounded-lg transition-colors text-sm md:text-base disabled:opacity-50"
                   disabled={currentSlide === slides.length - 1}
                 >
                   <span className="hidden sm:inline">Next</span>
@@ -417,8 +480,8 @@
                 </button>
               </div>
 
-              <div className="bg-gray-800 text-white text-center py-1.5 md:py-2 text-xs md:text-sm">
-                Slide {currentSlide + 1} of {slides.length}
+              <div className="bg-amber-900 text-amber-50 text-center py-1.5 md:py-2 text-xs md:text-sm">
+                Slide {currentSlide + 1} of {slides.length} | Asifa 26 - Nethra Club
               </div>
             </div>
           );
