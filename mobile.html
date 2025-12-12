@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis 2025 - Sponsorship Proposal</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        #root { width: 100%; height: 100vh; }
+        @media (max-width: 768px) {
+            .slide-content { padding: 1rem !important; }
+            .slide-title { font-size: 1.5rem !important; }
+            .slide-subtitle { font-size: 1.125rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+        const ChevronLeft = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+        );
+        const ChevronRight = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+        );
+        const Users = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        );
+        const TrendingUp = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+        );
+        const Target = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+        );
+        const Award = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+        );
+        const Calendar = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+        );
+        const MapPin = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+        );
+
+        const SponsorshipPresentation = () => {
+          const [currentSlide, setCurrentSlide] = useState(0);
+
+          const slides = [
+            {
+              title: "Partnership Opportunity",
+              subtitle: "Axis 2025 - Connecting Innovation with Impact",
+              type: "cover"
+            },
+            {
+              title: "Why Partner With Us?",
+              type: "content",
+              points: [
+                {
+                  icon: <Users className="w-6 h-6 md:w-8 md:h-8" />,
+                  heading: "Direct Student Engagement",
+                  text: "Access to 500+ highly motivated engineering students actively seeking internships, projects, and career opportunities"
+                },
+                {
+                  icon: <TrendingUp className="w-6 h-6 md:w-8 md:h-8" />,
+                  heading: "Brand Visibility",
+                  text: "Multi-channel promotion across campus, social media platforms, and our event website reaching thousands of impressions"
+                },
+                {
+                  icon: <Target className="w-6 h-6 md:w-8 md:h-8" />,
+                  heading: "Targeted Audience",
+                  text: "Connect with future engineers and innovators in mechanical, technical, and management domains"
+                },
+                {
+                  icon: <Award className="w-6 h-6 md:w-8 md:h-8" />,
+                  heading: "Tangible Outcomes",
+                  text: "Genuine student feedback and direct interaction opportunities that provide real insights into youth perception"
+                }
+              ]
+            },
+            {
+              title: "Event Overview",
+              type: "event-details",
+              details: [
+                { label: "Expected Footfall", value: "500+ Students", icon: <Users className="w-5 h-5 md:w-6 md:h-6" /> },
+                { label: "Main Event Date", value: "To Be Announced", icon: <Calendar className="w-5 h-5 md:w-6 md:h-6" /> },
+                { label: "Pre-Event Showcase", value: "January 9, 2025", icon: <Calendar className="w-5 h-5 md:w-6 md:h-6" /> },
+                { label: "Venue", value: "College Campus", icon: <MapPin className="w-5 h-5 md:w-6 md:h-6" /> }
+              ]
+            },
+            {
+              title: "Sponsorship Tiers",
+              type: "packages",
+              packages: [
+                {
+                  name: "Bronze Partnership",
+                  price: "₹1,000",
+                  features: [
+                    "One-day exhibition stall",
+                    "Direct student interaction opportunity",
+                    "Basic brand presence at the event",
+                    "Ideal for: Small businesses & startups"
+                  ],
+                  highlight: false
+                },
+                {
+                  name: "Silver Partnership",
+                  price: "₹5,000",
+                  features: [
+                    "Full-day exhibition stall",
+                    "Promotional reel on Instagram",
+                    "Dedicated page on event website",
+                    "LinkedIn & Instagram campaign posts",
+                    "10 structured student feedbacks",
+                    "Ideal for: Growing brands & SMEs"
+                  ],
+                  highlight: false
+                },
+                {
+                  name: "Gold Partnership",
+                  price: "₹7,000",
+                  features: [
+                    "Premium exhibition stall (one day)",
+                    "Professional promotional reel",
+                    "Featured website promotion",
+                    "LinkedIn & Instagram highlight campaigns",
+                    "Company logo on official club merchandise",
+                    "20 comprehensive student feedbacks",
+                    "Enhanced brand association",
+                    "Ideal for: Established companies"
+                  ],
+                  highlight: true
+                },
+                {
+                  name: "Platinum Partnership",
+                  price: "₹10,000",
+                  features: [
+                    "Two promotional reels (extended reach)",
+                    "Premium stall for TWO days",
+                    "Priority website feature placement",
+                    "Extensive social media campaigns",
+                    "50 detailed student feedbacks & insights",
+                    "Special dedicated event brochure mention",
+                    "Company logo on event dropdown banners",
+                    "Exclusive booth at Pre-Event Showcase (Jan 9)",
+                    "Maximum visibility package",
+                    "Ideal for: Major brands & corporates"
+                  ],
+                  highlight: true
+                }
+              ]
+            },
+            {
+              title: "Additional Opportunities",
+              type: "addons",
+              addons: [
+                {
+                  name: "Drill & Demo Setup",
+                  price: "₹8,000",
+                  description: "Interactive demonstration area for hands-on product/service experience. Includes equipment setup, dedicated space, and technical support throughout the event."
+                },
+                {
+                  name: "Panelist File Branding",
+                  price: "₹800 total",
+                  description: "Your logo prominently featured on official files distributed to all 60 event panelists, judges, and guest speakers. Just ₹800 for complete coverage across all files - extended brand recall beyond the event day."
+                },
+                {
+                  name: "Custom Standees",
+                  price: "At Production Cost",
+                  description: "Professional standees designed and placed at strategic locations. Pricing based on size, quantity, and material - billed at actual production cost with no markup."
+                }
+              ]
+            },
+            {
+              title: "What You Actually Get",
+              type: "value",
+              sections: [
+                {
+                  heading: "Real Engagement",
+                  description: "Not just passive visibility - actual conversations with students who are your future customers, employees, or partners. Every interaction is an opportunity to build genuine brand affinity."
+                },
+                {
+                  heading: "Quality Feedback",
+                  description: "Structured feedback forms completed by students providing honest insights about your brand, products, or services. This is market research you'd otherwise pay significantly more for."
+                },
+                {
+                  heading: "Digital Footprint",
+                  description: "Professional content created and distributed across multiple platforms with measurable reach. Reels, posts, and website features that remain accessible long after the event."
+                },
+                {
+                  heading: "Campus Credibility",
+                  description: "Association with a recognized college technical event builds brand trust among the student community and enhances your employer brand for future recruitment."
+                }
+              ]
+            },
+            {
+              title: "Why This Matters",
+              type: "impact",
+              content: "College events aren't just about banners and logos. They're about building relationships with the next generation of professionals. Students today are discerning - they value authenticity and meaningful engagement over flashy advertising. Our sponsorship packages are designed to give you genuine touchpoints with this audience, whether you're recruiting talent, testing products, or building long-term brand awareness."
+            },
+            {
+              title: "Next Steps",
+              type: "cta",
+              contact: {
+                title: "Let's Create Something Meaningful Together",
+                description: "We're committed to making this partnership valuable for you. Let's discuss how we can customize these packages to align with your specific goals and budget.",
+                action: "Schedule a conversation with our team to explore the right fit for your brand."
+              }
+            }
+          ];
+
+          const nextSlide = () => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+          };
+
+          const prevSlide = () => {
+            setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+          };
+
+          const renderSlide = (slide) => {
+            switch (slide.type) {
+              case 'cover':
+                return (
+                  <div className="h-full flex flex-col items-center justify-center text-center px-4 md:px-8">
+                    <div className="max-w-4xl">
+                      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        {slide.title}
+                      </h1>
+                      <p className="text-lg md:text-2xl lg:text-3xl text-gray-600 mb-8 md:mb-12">{slide.subtitle}</p>
+                      <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+                    </div>
+                  </div>
+                );
+
+              case 'content':
+                return (
+                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                      {slide.points.map((point, idx) => (
+                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                          <div className="text-blue-600 mb-3 md:mb-4">{point.icon}</div>
+                          <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-gray-800">{point.heading}</h3>
+                          <p className="text-sm md:text-base text-gray-600 leading-relaxed">{point.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'event-details':
+                return (
+                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                      {slide.details.map((detail, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-blue-50 to-purple-50 p-4 md:p-8 rounded-xl">
+                          <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-3">
+                            <div className="text-blue-600">{detail.icon}</div>
+                            <h3 className="text-base md:text-lg font-semibold text-gray-700">{detail.label}</h3>
+                          </div>
+                          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800">{detail.value}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'packages':
+                return (
+                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-8 text-gray-800">{slide.title}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                      {slide.packages.map((pkg, idx) => (
+                        <div
+                          key={idx}
+                          className={`bg-white rounded-xl shadow-lg p-4 md:p-6 ${
+                            pkg.highlight ? 'ring-2 ring-blue-500' : ''
+                          }`}
+                        >
+                          {pkg.highlight && (
+                            <div className="bg-blue-500 text-white text-xs md:text-sm font-semibold px-3 py-1 rounded-full inline-block mb-2 md:mb-3">
+                              RECOMMENDED
+                            </div>
+                          )}
+                          <h3 className="text-xl md:text-2xl font-bold mb-2 text-gray-800">{pkg.name}</h3>
+                          <p className="text-2xl md:text-3xl font-bold text-blue-600 mb-3 md:mb-4">{pkg.price}</p>
+                          <ul className="space-y-1.5 md:space-y-2">
+                            {pkg.features.map((feature, fidx) => (
+                              <li key={fidx} className="flex items-start gap-2 text-gray-700">
+                                <span className="text-green-500 mt-0.5 md:mt-1 flex-shrink-0">✓</span>
+                                <span className="text-xs md:text-sm">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'addons':
+                return (
+                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
+                    <div className="space-y-4 md:space-y-6">
+                      {slide.addons.map((addon, idx) => (
+                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg">
+                          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                            <h3 className="text-lg md:text-2xl font-semibold text-gray-800">{addon.name}</h3>
+                            <span className="text-xl md:text-2xl font-bold text-blue-600 whitespace-nowrap">{addon.price}</span>
+                          </div>
+                          <p className="text-sm md:text-base text-gray-600 leading-relaxed">{addon.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'value':
+                return (
+                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                      {slide.sections.map((section, idx) => (
+                        <div key={idx} className="bg-gradient-to-br from-blue-50 to-white p-4 md:p-6 rounded-xl">
+                          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-blue-600">{section.heading}</h3>
+                          <p className="text-sm md:text-base text-gray-700 leading-relaxed">{section.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+
+              case 'impact':
+                return (
+                  <div className="h-full flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-8 text-gray-800 text-center">{slide.title}</h2>
+                    <div className="max-w-4xl bg-white p-4 md:p-8 rounded-xl shadow-lg">
+                      <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">{slide.content}</p>
+                    </div>
+                  </div>
+                );
+
+              case 'cta':
+                return (
+                  <div className="h-full flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 text-center overflow-y-auto">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-gray-800">{slide.contact.title}</h2>
+                    <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-8 max-w-3xl">{slide.contact.description}</p>
+                    <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg lg:text-xl font-semibold">
+                      {slide.contact.action}
+                    </div>
+                  </div>
+                );
+
+              default:
+                return null;
+            }
+          };
+
+          return (
+            <div className="w-full h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col">
+              <div className="flex-1 relative overflow-hidden">
+                {renderSlide(slides[currentSlide])}
+              </div>
+
+              <div className="bg-white border-t border-gray-200 p-3 md:p-6 flex items-center justify-between">
+                <button
+                  onClick={prevSlide}
+                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm md:text-base disabled:opacity-50"
+                  disabled={currentSlide === 0}
+                >
+                  <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="hidden sm:inline">Previous</span>
+                </button>
+
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  {slides.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+                        idx === currentSlide ? 'bg-blue-600 w-4 md:w-8' : 'bg-gray-300'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextSlide}
+                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm md:text-base disabled:opacity-50"
+                  disabled={currentSlide === slides.length - 1}
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+                </button>
+              </div>
+
+              <div className="bg-gray-800 text-white text-center py-1.5 md:py-2 text-xs md:text-sm">
+                Slide {currentSlide + 1} of {slides.length}
+              </div>
+            </div>
+          );
+        };
+
+        ReactDOM.render(<SponsorshipPresentation />, document.getElementById('root'));
+    </script>
+</body>
+</html>
