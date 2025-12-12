@@ -10,7 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { margin: 0; padding: 0; background-color: #F5F5DC; }
-        #root { width: 100%; height: 100vh; }
+        #root { width: 100%; height: 100vh; background-color: #F5F5DC; }
         @media (max-width: 768px) {
             .slide-content { padding: 1rem !important; }
             .slide-title { font-size: 1.5rem !important; }
@@ -26,6 +26,9 @@
             font-size: 0.875rem;
             text-align: center;
             padding: 1rem;
+        }
+        .beige-bg {
+            background-color: #F5F5DC !important;
         }
     </style>
 </head>
@@ -443,8 +446,8 @@
           };
 
           return (
-            <div className="w-full h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 flex flex-col">
-              <div className="flex-1 relative overflow-hidden">
+            <div className="w-full h-screen beige-bg flex flex-col" style={{backgroundColor: '#F5F5DC'}}>
+              <div className="flex-1 relative overflow-hidden beige-bg" style={{backgroundColor: '#F5F5DC'}}>
                 {renderSlide(slides[currentSlide])}
               </div>
 
