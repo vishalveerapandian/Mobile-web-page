@@ -16,16 +16,16 @@
             .slide-title { font-size: 1.5rem !important; }
             .slide-subtitle { font-size: 1.125rem !important; }
         }
-        .logo-placeholder {
-            border: 2px dashed #9CA3AF;
-            background-color: #F9FAFB;
+        .logo-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #6B7280;
-            font-size: 0.875rem;
-            text-align: center;
             padding: 1rem;
+        }
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         .beige-bg {
             background-color: #F5F5DC !important;
@@ -264,10 +264,17 @@
                 return (
                   <div className="h-full flex items-center justify-center px-4 md:px-8">
                     <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
-                      {/* Left Logo Slot */}
+                      {/* Left Logo - ITM */}
                       <div className="hidden md:block md:col-span-2">
-                        <div className="logo-placeholder rounded-xl h-32 md:h-48">
-                          Sponsor Logo
+                        <div className="logo-container rounded-xl h-32 md:h-48 bg-white shadow-lg">
+                          <img 
+                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/itm-logo.png" 
+                            alt="ITM Logo"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500 text-sm">ITM Logo</div>';
+                            }}
+                          />
                         </div>
                       </div>
 
@@ -285,20 +292,41 @@
                         <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-amber-700 to-orange-600 mx-auto"></div>
                       </div>
 
-                      {/* Right Logo Slot */}
+                      {/* Right Logo - Nethra */}
                       <div className="hidden md:block md:col-span-2">
-                        <div className="logo-placeholder rounded-xl h-32 md:h-48">
-                          Sponsor Logo
+                        <div className="logo-container rounded-xl h-32 md:h-48 bg-white shadow-lg">
+                          <img 
+                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/nethra-logo.png" 
+                            alt="Nethra Club Logo"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500 text-sm">Nethra Logo</div>';
+                            }}
+                          />
                         </div>
                       </div>
 
                       {/* Mobile Logo Slots */}
                       <div className="md:hidden grid grid-cols-2 gap-4">
-                        <div className="logo-placeholder rounded-xl h-24">
-                          Sponsor Logo
+                        <div className="logo-container rounded-xl h-24 bg-white shadow-lg">
+                          <img 
+                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/itm-logo.png" 
+                            alt="ITM Logo"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500 text-xs">ITM Logo</div>';
+                            }}
+                          />
                         </div>
-                        <div className="logo-placeholder rounded-xl h-24">
-                          Sponsor Logo
+                        <div className="logo-container rounded-xl h-24 bg-white shadow-lg">
+                          <img 
+                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/nethra-logo.png" 
+                            alt="Nethra Club Logo"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500 text-xs">Nethra Logo</div>';
+                            }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -456,41 +484,3 @@
                   onClick={prevSlide}
                   className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-amber-100 hover:bg-amber-200 rounded-lg transition-colors text-sm md:text-base disabled:opacity-50 text-gray-800"
                   disabled={currentSlide === 0}
-                >
-                  <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="hidden sm:inline">Previous</span>
-                </button>
-
-                <div className="flex items-center gap-1.5 md:gap-2">
-                  {slides.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
-                        idx === currentSlide ? 'bg-amber-700 w-4 md:w-8' : 'bg-amber-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={nextSlide}
-                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-amber-700 hover:bg-amber-800 text-white rounded-lg transition-colors text-sm md:text-base disabled:opacity-50"
-                  disabled={currentSlide === slides.length - 1}
-                >
-                  <span className="hidden sm:inline">Next</span>
-                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-                </button>
-              </div>
-
-              <div className="bg-amber-900 text-amber-50 text-center py-1.5 md:py-2 text-xs md:text-sm">
-                Slide {currentSlide + 1} of {slides.length} | Asifa 26 - Nethra Club
-              </div>
-            </div>
-          );
-        };
-
-        ReactDOM.render(<SponsorshipPresentation />, document.getElementById('root'));
-    </script>
-</body>
-</html>
