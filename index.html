@@ -106,11 +106,39 @@
             gap: 3rem;
             margin-bottom: 2rem;
             align-items: center;
+            flex-wrap: wrap;
         }
         .logo-container img {
             height: 120px;
             width: auto;
             object-fit: contain;
+            max-width: 45%;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-container {
+                gap: 1.5rem;
+            }
+            .logo-container img {
+                height: 80px;
+                max-width: 40%;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-container {
+                gap: 1rem;
+            }
+            .logo-container img {
+                height: 60px;
+                max-width: 35%;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
