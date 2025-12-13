@@ -4,637 +4,280 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asifa 26 - Sponsorship Proposal</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { margin: 0; padding: 0; background-color: #F5F5DC; }
-        #root { width: 100%; height: 100vh; background-color: #F5F5DC; }
-        @media (max-width: 768px) {
-            .slide-content { padding: 1rem !important; }
-            .slide-title { font-size: 1.5rem !important; }
-            .slide-subtitle { font-size: 1.125rem !important; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #F5F5DC;
+            height: 100vh;
+            overflow: hidden;
         }
-        .logo-container {
+        .container {
+            height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
+            flex-direction: column;
+        }
+        .slide-area {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        .slide {
+            display: none;
+        }
+        .slide.active {
+            display: block;
+        }
+        h1 { 
+            color: #B8860B; 
+            font-size: 3rem; 
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        h2 { 
+            color: #333; 
+            font-size: 2rem; 
+            margin-bottom: 1rem; 
+        }
+        .controls {
             background: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #DEB887;
         }
-        .logo-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
         }
-        .beige-bg {
-            background-color: #F5F5DC !important;
+        .btn-prev {
+            background: #DEB887;
+            color: #333;
+        }
+        .btn-next {
+            background: #B8860B;
+            color: white;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #DEB887;
+            cursor: pointer;
+        }
+        .dot.active {
+            background: #B8860B;
+            width: 30px;
+            border-radius: 5px;
+        }
+        .content-box {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        ul {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+        .footer {
+            background: #8B4513;
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useState } = React;
-        const ChevronLeft = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-        );
-        const ChevronRight = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-        );
-        const Users = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-        );
-        const TrendingUp = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-        );
-        const Target = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-            </svg>
-        );
-        const Award = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-            </svg>
-        );
-        const Calendar = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-        );
-        const MapPin = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-        );
-        const QrCode = ({ className }) => (
-            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
-            </svg>
-        );
-
-        const SponsorshipPresentation = () => {
-          const [currentSlide, setCurrentSlide] = useState(0);
-
-          const slides = [
-            {
-              title: "Partnership Opportunity",
-              subtitle: "Asifa 26",
-              organization: "Nethra Club - ITMS Research Wing",
-              type: "cover"
-            },
-            {
-              title: "About ASIFA 26",
-              type: "event-info",
-              content: {
-                fullTitle: "Artificial Intelligence and Sustainability: Shaping the Future Ahead",
-                dates: "15th, 16th & 17th January 2026",
-                venue: "ITM Skills University, Kharghar, Navi Mumbai",
-                description: "The ITM International Research Conference 'ASIFA 26' provides a platform to academicians, researchers, students, and the corporate world to explore the role of Artificial Intelligence and Sustainability in Management.",
-                highlights: [
-                  "Student Research Conference - 15th Jan 2026",
-                  "Doctoral Colloquium - 16th Jan 2026",
-                  "International Research Conference - 17th Jan 2026",
-                  "Publication in ISBN proceedings & Scopus journals",
-                  "Best Paper Awards"
-                ]
-              }
-            },
-            {
-              title: "Why Partner With Us?",
-              type: "content",
-              points: [
-                {
-                  icon: <Users className="w-6 h-6 md:w-8 md:h-8" />,
-                  heading: "Direct Student Engagement",
-                  text: "Access to 500+ highly motivated engineering students actively seeking internships, projects, and career opportunities"
-                },
-                {
-                  icon: <TrendingUp className="w-6 h-6 md:w-8 md:h-8" />,
-                  heading: "Brand Visibility",
-                  text: "Multi-channel promotion across campus, social media platforms, and our event website reaching thousands of impressions"
-                },
-                {
-                  icon: <Target className="w-6 h-6 md:w-8 md:h-8" />,
-                  heading: "Targeted Audience",
-                  text: "Connect with future engineers and innovators in mechanical, technical, and management domains"
-                },
-                {
-                  icon: <Award className="w-6 h-6 md:w-8 md:h-8" />,
-                  heading: "Tangible Outcomes",
-                  text: "Genuine student feedback and direct interaction opportunities that provide real insights into youth perception"
-                }
-              ]
-            },
-            {
-              title: "Conference Highlights",
-              type: "conference-details",
-              sections: [
-                {
-                  heading: "Conference Theme Areas",
-                  points: [
-                    "AI for Climate Change Mitigation",
-                    "AI in Sustainable Agriculture & Smart Cities",
-                    "AI for Green Supply Chains",
-                    "AI in Water and Energy Management",
-                    "AI and Biodiversity Conservation",
-                    "AI in ESG and Corporate Sustainability",
-                    "AI for Disaster Risk Reduction",
-                    "Ethics, Equity, and Responsible AI"
-                  ]
-                },
-                {
-                  heading: "Who Can Participate?",
-                  points: [
-                    "Students (UG & PG)",
-                    "Ph.D. & FPM Scholars",
-                    "Faculty Members & Researchers",
-                    "Corporate Professionals",
-                    "International Academicians"
-                  ]
-                }
-              ]
-            },
-            {
-              title: "Event Overview",
-              type: "event-details",
-              details: [
-                { label: "Expected Footfall", value: "500+ Students", icon: <Users className="w-5 h-5 md:w-6 md:h-6" /> },
-                { label: "Main Event Date", value: "15-17 Jan 2026", icon: <Calendar className="w-5 h-5 md:w-6 md:h-6" /> },
-                { label: "Pre-Event Showcase", value: "January 9, 2026", icon: <Calendar className="w-5 h-5 md:w-6 md:h-6" /> },
-                { label: "Venue", value: "ITM Skills University", icon: <MapPin className="w-5 h-5 md:w-6 md:h-6" /> }
-              ]
-            },
-            {
-              title: "Sponsorship Tiers",
-              type: "packages",
-              packages: [
-                {
-                  name: "Bronze Partnership",
-                  price: "₹1,000",
-                  features: [
-                    "One-day exhibition stall",
-                    "Direct student interaction opportunity",
-                    "Basic brand presence at the event",
-                    "Ideal for: Small businesses & startups"
-                  ],
-                  highlight: false
-                },
-                {
-                  name: "Silver Partnership",
-                  price: "₹5,000",
-                  features: [
-                    "Full-day exhibition stall",
-                    "Promotional reel on Instagram",
-                    "Dedicated page on event website",
-                    "LinkedIn & Instagram campaign posts",
-                    "10 structured student feedbacks",
-                    "Ideal for: Growing brands & SMEs"
-                  ],
-                  highlight: false
-                },
-                {
-                  name: "Gold Partnership",
-                  price: "₹7,000",
-                  features: [
-                    "Premium exhibition stall (one day)",
-                    "Professional promotional reel",
-                    "Featured website promotion",
-                    "LinkedIn & Instagram highlight campaigns",
-                    "Company logo on official club merchandise",
-                    "20 comprehensive student feedbacks",
-                    "Enhanced brand association",
-                    "Ideal for: Established companies"
-                  ],
-                  highlight: true
-                },
-                {
-                  name: "Platinum Partnership",
-                  price: "₹10,000",
-                  features: [
-                    "Two promotional reels (extended reach)",
-                    "Premium stall for TWO days",
-                    "Priority website feature placement",
-                    "Extensive social media campaigns",
-                    "50 detailed student feedbacks & insights",
-                    "Special dedicated event brochure mention",
-                    "Company logo on event dropdown banners",
-                    "Exclusive booth at Pre-Event Showcase (Jan 9)",
-                    "Maximum visibility package",
-                    "Ideal for: Major brands & corporates"
-                  ],
-                  highlight: true
-                }
-              ]
-            },
-            {
-              title: "Additional Opportunities",
-              type: "addons",
-              addons: [
-                {
-                  name: "Drill & Demo Setup",
-                  price: "₹8,000",
-                  description: "Interactive demonstration area for hands-on product/service experience. Includes equipment setup, dedicated space, and technical support throughout the event."
-                },
-                {
-                  name: "Panelist File Branding",
-                  price: "₹800 total",
-                  description: "Your logo prominently featured on official files distributed to all 60 event panelists, judges, and guest speakers. Just ₹800 for logos on all 60 files - extended brand recall beyond the event day."
-                },
-                {
-                  name: "Custom Standees",
-                  price: "At Production Cost",
-                  description: "Professional standees designed and placed at strategic locations. Pricing based on size, quantity, and material - billed at actual production cost with no markup."
-                }
-              ]
-            },
-            {
-              title: "What You Actually Get",
-              type: "value",
-              sections: [
-                {
-                  heading: "Real Engagement",
-                  description: "Not just passive visibility - actual conversations with students who are your future customers, employees, or partners. Every interaction is an opportunity to build genuine brand affinity."
-                },
-                {
-                  heading: "Quality Feedback",
-                  description: "Structured feedback forms completed by students providing honest insights about your brand, products, or services. This is market research you'd otherwise pay significantly more for."
-                },
-                {
-                  heading: "Digital Footprint",
-                  description: "Professional content created and distributed across multiple platforms with measurable reach. Reels, posts, and website features that remain accessible long after the event."
-                },
-                {
-                  heading: "Campus Credibility",
-                  description: "Association with a recognized college technical event builds brand trust among the student community and enhances your employer brand for future recruitment."
-                }
-              ]
-            },
-            {
-              title: "Why This Matters",
-              type: "impact",
-              content: "College events aren't just about banners and logos. They're about building relationships with the next generation of professionals. Students today are discerning - they value authenticity and meaningful engagement over flashy advertising. Our sponsorship packages are designed to give you genuine touchpoints with this audience, whether you're recruiting talent, testing products, or building long-term brand awareness."
-            },
-            {
-              title: "Payment & Contact",
-              type: "cta",
-              contact: {
-                title: "Let's Create Something Meaningful Together",
-                description: "We're committed to making this partnership valuable for you. Scan the QR code to make payment or reach out to us directly.",
-                bankDetails: {
-                  beneficiary: "Institute for Technology and Management Trust",
-                  bank: "ICICI Bank Limited",
-                  branch: "Vashi Branch",
-                  account: "015101026740",
-                  ifsc: "ICIC0000151"
-                },
-                contacts: [
-                  {
-                    name: "Kaushiki Vats",
-                    designation: "President",
-                    email: "2025.kaushikiv@isu.ac.in"
-                  },
-                  {
-                    name: "Vishal Veerapandian",
-                    designation: "Vice President",
-                    email: "2025.vishalv@isu.ac.in"
-                  }
-                ]
-              }
-            }
-          ];
-
-          const nextSlide = () => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length);
-          };
-
-          const prevSlide = () => {
-            setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-          };
-
-          const renderSlide = (slide) => {
-            switch (slide.type) {
-              case 'cover':
-                return (
-                  <div className="h-full flex items-center justify-center px-4 md:px-8">
-                    <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
-                      {/* Left Logo - ITM */}
-                      <div className="hidden md:block md:col-span-2">
-                        <div className="logo-container rounded-xl h-32 md:h-48 shadow-lg">
-                          <img 
-                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/itm-logo.png" 
-                            alt="ITM Logo"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Center Content */}
-                      <div className="col-span-1 md:col-span-8 text-center">
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">
-                          {slide.title}
-                        </h1>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-gray-800">
-                          {slide.subtitle}
-                        </h2>
-                        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 md:mb-8 font-medium">
-                          {slide.organization}
-                        </p>
-                        <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-amber-700 to-orange-600 mx-auto"></div>
-                      </div>
-
-                      {/* Right Logo - Nethra */}
-                      <div className="hidden md:block md:col-span-2">
-                        <div className="logo-container rounded-xl h-32 md:h-48 shadow-lg">
-                          <img 
-                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/nethra-logo.png" 
-                            alt="Nethra Club Logo"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Mobile Logo Slots */}
-                      <div className="md:hidden grid grid-cols-2 gap-4">
-                        <div className="logo-container rounded-xl h-24 shadow-lg">
-                          <img 
-                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/itm-logo.png" 
-                            alt="ITM Logo"
-                          />
-                        </div>
-                        <div className="logo-container rounded-xl h-24 shadow-lg">
-                          <img 
-                            src="https://raw.githubusercontent.com/vishalveerapandian/Mobile-web-page/main/nethra-logo.png" 
-                            alt="Nethra Club Logo"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-
-              case 'event-info':
-                return (
-                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-gray-800">{slide.title}</h2>
-                    <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-amber-200 mb-4">
-                      <h3 className="text-xl md:text-2xl font-bold text-amber-700 mb-3">{slide.content.fullTitle}</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-                        <div>
-                          <p className="text-sm text-gray-600">Dates</p>
-                          <p className="text-base md:text-lg font-semibold text-gray-800">{slide.content.dates}</p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-600">Venue</p>
-                          <p className="text-base md:text-lg font-semibold text-gray-800">{slide.content.venue}</p>
-                        </div>
-                      </div>
-                      <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4">{slide.content.description}</p>
-                    </div>
-                    <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-4 md:p-6 rounded-xl border border-amber-200">
-                      <h4 className="text-lg md:text-xl font-bold text-gray-800 mb-3">Conference Schedule</h4>
-                      <ul className="space-y-2">
-                        {slide.content.highlights.map((item, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm md:text-base text-gray-700">
-                            <span className="text-amber-600 mt-1 flex-shrink-0">▸</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                );
-
-              case 'conference-details':
-                return (
-                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 text-gray-800">{slide.title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                      {slide.sections.map((section, idx) => (
-                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-200">
-                          <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-amber-700">{section.heading}</h3>
-                          <ul className="space-y-2">
-                            {section.points.map((point, pidx) => (
-                              <li key={pidx} className="flex items-start gap-2 text-sm md:text-base text-gray-700">
-                                <span className="text-green-600 mt-0.5 flex-shrink-0">✓</span>
-                                <span>{point}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-
-              case 'content':
-                return (
-                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                      {slide.points.map((point, idx) => (
-                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200">
-                          <div className="text-amber-700 mb-3 md:mb-4">{point.icon}</div>
-                          <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-gray-800">{point.heading}</h3>
-                          <p className="text-sm md:text-base text-gray-600 leading-relaxed">{point.text}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-
-              case 'event-details':
-                return (
-                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                      {slide.details.map((detail, idx) => (
-                        <div key={idx} className="bg-gradient-to-br from-amber-50 to-orange-50 p-4 md:p-8 rounded-xl border border-amber-200">
-                          <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-3">
-                            <div className="text-amber-700">{detail.icon}</div>
-                            <h3 className="text-base md:text-lg font-semibold text-gray-700">{detail.label}</h3>
-                          </div>
-                          <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800">{detail.value}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-
-              case 'packages':
-                return (
-                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-8 text-gray-800">{slide.title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                      {slide.packages.map((pkg, idx) => (
-                        <div
-                          key={idx}
-                          className={`bg-white rounded-xl shadow-lg p-4 md:p-6 border-2 ${
-                            pkg.highlight ? 'border-amber-600' : 'border-gray-200'
-                          }`}
-                        >
-                          {pkg.highlight && (
-                            <div className="bg-amber-600 text-white text-xs md:text-sm font-semibold px-3 py-1 rounded-full inline-block mb-2 md:mb-3">
-                              RECOMMENDED
-                            </div>
-                          )}
-                          <h3 className="text-xl md:text-2xl font-bold mb-2 text-gray-800">{pkg.name}</h3>
-                          <p className="text-2xl md:text-3xl font-bold text-amber-700 mb-3 md:mb-4">{pkg.price}</p>
-                          <ul className="space-y-1.5 md:space-y-2">
-                            {pkg.features.map((feature, fidx) => (
-                              <li key={fidx} className="flex items-start gap-2 text-gray-700">
-                                <span className="text-green-600 mt-0.5 md:mt-1 flex-shrink-0">✓</span>
-                                <span className="text-xs md:text-sm">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-
-              case 'addons':
-                return (
-                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
-                    <div className="space-y-4 md:space-y-6">
-                      {slide.addons.map((addon, idx) => (
-                        <div key={idx} className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-200">
-                          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
-                            <h3 className="text-lg md:text-2xl font-semibold text-gray-800">{addon.name}</h3>
-                            <span className="text-xl md:text-2xl font-bold text-amber-700 whitespace-nowrap">{addon.price}</span>
-                          </div>
-                          <p className="text-sm md:text-base text-gray-600 leading-relaxed">{addon.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-
-              case 'value':
-                return (
-                  <div className="h-full flex flex-col p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-12 text-gray-800">{slide.title}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                      {slide.sections.map((section, idx) => (
-                        <div key={idx} className="bg-gradient-to-br from-amber-50 to-white p-4 md:p-6 rounded-xl border border-amber-100">
-                          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-amber-700">{section.heading}</h3>
-                          <p className="text-sm md:text-base text-gray-700 leading-relaxed">{section.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-
-              case 'impact':
-                return (
-                  <div className="h-full flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-8 text-gray-800 text-center">{slide.title}</h2>
-                    <div className="max-w-4xl bg-white p-4 md:p-8 rounded-xl shadow-lg border border-gray-200">
-                      <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">{slide.content}</p>
-                    </div>
-                  </div>
-                );
-
-              case 'cta':
-                return (
-                  <div className="h-full flex flex-col items-center justify-center p-4 md:p-8 lg:p-12 text-center overflow-y-auto">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-gray-800">{slide.contact.title}</h2>
-                    <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-8 max-w-3xl">{slide.contact.description}</p>
-                    
-                    {/* QR Code Scanner for Payment */}
-                    <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border-2 border-amber-600 mb-6 max-w-md">
-                      <div className="w-48 h-48 md:w-64 md:h-64 mx-auto bg-gray-100 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-400 mb-4">
-                        <div className="text-center">
-                          <QrCode className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 text-gray-400" />
-                          <p className="text-sm md:text-base text-gray-500 font-medium">Payment QR Code<br/>Placeholder</p>
-                        </div>
-                      </div>
-                      <div className="text-left text-xs md:text-sm text-gray-700 space-y-1">
-                        <p><strong>Bank:</strong> {slide.contact.bankDetails.bank}</p>
-                        <p><strong>Account:</strong> {slide.contact.bankDetails.account}</p>
-                        <p><strong>IFSC:</strong> {slide.contact.bankDetails.ifsc}</p>
-                        <p><strong>Beneficiary:</strong> {slide.contact.bankDetails.beneficiary}</p>
-                      </div>
-                    </div>
-
-                    {/* Contact Information */}
-                    <div className="bg-amber-50 px-6 md:px-8 py-4 rounded-lg border border-amber-200 mb-4 max-w-md w-full">
-                      <p className="text-base md:text-lg font-semibold text-gray-800 mb-3">Contact Us</p>
-                      {slide.contact.contacts.map((contact, idx) => (
-                        <div key={idx} className="mb-3 last:mb-0">
-                          <p className="text-sm md:text-base font-semibold text-gray-800">{contact.name}</p>
-                          <p className="text-xs md:text-sm text-gray-600">{contact.designation}</p>
-                          <p className="text-xs md:text-sm text-amber-700">{contact.email}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <p className="text-sm text-gray-600">Nethra Club - ITMS Research Wing | ITM Skills University</p>
-                  </div>
-                );
-
-              default:
-                return null;
-            }
-          };
-
-          return (
-            <div className="w-full h-screen beige-bg flex flex-col" style={{backgroundColor: '#F5F5DC'}}>
-              <div className="flex-1 relative overflow-hidden beige-bg" style={{backgroundColor: '#F5F5DC'}}>
-                {renderSlide(slides[currentSlide])}
-              </div>
-
-              <div className="bg-white border-t border-amber-200 p-3 md:p-6 flex items-center justify-between">
-                <button
-                  onClick={prevSlide}
-                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-amber-100 hover:bg-amber-200 rounded-lg transition-colors text-sm md:text-base disabled:opacity-50 text-gray-800"
-                  disabled={currentSlide === 0}
-                >
-                  <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
-                  <span className="hidden sm:inline">Previous</span>
-                </button>
-
-                <div className="flex items-center gap-1.5 md:gap-2">
-                  {slides.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
-                        idx === currentSlide ? 'bg-amber-700 w-4 md:w-8' : 'bg-amber-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={nextSlide}
-                  className="flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-3 bg-amber-700 hover:bg-amber-800 text-white rounded-lg transition-colors text-sm md:text-base disabled:opacity-50"
-                  disabled={currentSlide === slides.length - 1}
-                >
-                  <span className="hidden sm:inline">Next</span>
-                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-                </button>
-              </div>
-
-              <div className="bg-amber-900 text-amber-50 text-center py-1.5 md:py-2 text-xs md:text-sm">
-                Slide {currentSlide + 1} of {slides.length} | Asifa 26 - Nethra Club
-              </div>
+    <div class="container">
+        <div class="slide-area">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Partnership Opportunity</h1>
+                <h1 style="font-size: 2.5rem;">Asifa 26</h1>
+                <p style="text-align: center; font-size: 1.5rem; color: #555;">Nethra Club - ITMS Research Wing</p>
             </div>
-          );
-        };
 
-        ReactDOM.render(<SponsorshipPresentation />, document.getElementById('root'));
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>About ASIFA 26</h2>
+                <div class="content-box">
+                    <h3 style="color: #B8860B;">Artificial Intelligence and Sustainability: Shaping the Future Ahead</h3>
+                    <p><strong>Dates:</strong> 15th, 16th & 17th January 2026</p>
+                    <p><strong>Venue:</strong> ITM Skills University, Kharghar, Navi Mumbai</p>
+                    <p style="margin-top: 1rem;">The ITM International Research Conference provides a platform to explore the role of AI and Sustainability in Management.</p>
+                </div>
+                <div class="content-box">
+                    <h4>Conference Schedule:</h4>
+                    <ul>
+                        <li>Student Research Conference - 15th Jan 2026</li>
+                        <li>Doctoral Colloquium - 16th Jan 2026</li>
+                        <li>International Research Conference - 17th Jan 2026</li>
+                        <li>Publication in ISBN proceedings & Scopus journals</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Why Partner With Us?</h2>
+                <div class="content-box">
+                    <h4>Direct Student Engagement</h4>
+                    <p>Access to 500+ highly motivated engineering students</p>
+                </div>
+                <div class="content-box">
+                    <h4>Brand Visibility</h4>
+                    <p>Multi-channel promotion across campus and social media</p>
+                </div>
+                <div class="content-box">
+                    <h4>Targeted Audience</h4>
+                    <p>Connect with future engineers and innovators</p>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Sponsorship Packages</h2>
+                <div class="content-box">
+                    <h4>Bronze - ₹1,000</h4>
+                    <ul>
+                        <li>One-day exhibition stall</li>
+                        <li>Direct student interaction</li>
+                    </ul>
+                </div>
+                <div class="content-box">
+                    <h4>Silver - ₹5,000</h4>
+                    <ul>
+                        <li>Full-day stall + Instagram reel</li>
+                        <li>Website & social media promotion</li>
+                        <li>10 student feedbacks</li>
+                    </ul>
+                </div>
+                <div class="content-box" style="border: 2px solid #B8860B;">
+                    <h4>Gold - ₹7,000 ⭐ RECOMMENDED</h4>
+                    <ul>
+                        <li>Premium stall + professional reel</li>
+                        <li>Featured website promotion</li>
+                        <li>Logo on club merchandise</li>
+                        <li>20 comprehensive feedbacks</li>
+                    </ul>
+                </div>
+                <div class="content-box" style="border: 2px solid #B8860B;">
+                    <h4>Platinum - ₹10,000 ⭐ MAXIMUM VISIBILITY</h4>
+                    <ul>
+                        <li>2 reels + 2-day premium stall</li>
+                        <li>Extensive social campaigns</li>
+                        <li>50 detailed feedbacks</li>
+                        <li>Event brochure mention</li>
+                        <li>Exclusive booth at Pre-Event (Jan 9)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Additional Opportunities</h2>
+                <div class="content-box">
+                    <h4>Drill & Demo Setup - ₹8,000</h4>
+                    <p>Interactive demonstration area with equipment and technical support</p>
+                </div>
+                <div class="content-box">
+                    <h4>Panelist File Branding - ₹800 total</h4>
+                    <p>Your logo on all 60 files distributed to panelists, judges, and speakers</p>
+                </div>
+                <div class="content-box">
+                    <h4>Custom Standees - At Production Cost</h4>
+                    <p>Professional standees at strategic locations</p>
+                </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>Payment & Contact</h2>
+                <div class="content-box">
+                    <h4>Bank Details for Payment:</h4>
+                    <p><strong>Bank:</strong> ICICI Bank Limited, Vashi Branch</p>
+                    <p><strong>Account:</strong> 015101026740</p>
+                    <p><strong>IFSC:</strong> ICIC0000151</p>
+                    <p><strong>Beneficiary:</strong> Institute for Technology and Management Trust</p>
+                </div>
+                <div class="content-box">
+                    <h4>Contact Us:</h4>
+                    <p><strong>Kaushiki Vats</strong> - President</p>
+                    <p>Email: 2025.kaushikiv@isu.ac.in</p>
+                    <br>
+                    <p><strong>Vishal Veerapandian</strong> - Vice President</p>
+                    <p>Email: 2025.vishalv@isu.ac.in</p>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: #666;">Nethra Club - ITMS Research Wing | ITM Skills University</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn-prev" onclick="changeSlide(-1)" id="prevBtn">Previous</button>
+            <div class="dots" id="dotsContainer"></div>
+            <button class="btn-next" onclick="changeSlide(1)" id="nextBtn">Next</button>
+        </div>
+
+        <div class="footer">
+            <span id="slideCounter"></span> | Asifa 26 - Nethra Club
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const dotsContainer = document.getElementById('dotsContainer');
+        
+        // Create dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+        
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+            
+            slides[n].classList.add('active');
+            document.querySelectorAll('.dot')[n].classList.add('active');
+            
+            document.getElementById('prevBtn').disabled = n === 0;
+            document.getElementById('nextBtn').disabled = n === totalSlides - 1;
+            document.getElementById('slideCounter').textContent = `Slide ${n + 1} of ${totalSlides}`;
+        }
+        
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            showSlide(currentSlide);
+        }
+        
+        function goToSlide(n) {
+            currentSlide = n;
+            showSlide(currentSlide);
+        }
+        
+        showSlide(0);
     </script>
 </body>
 </html>
